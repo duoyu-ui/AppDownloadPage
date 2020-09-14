@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>下载页面</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="static/img/vns777.ico">
+    <link rel="stylesheet" href="static/css/reset.min.css">
+    <link rel="stylesheet" href="static/css/star.css">
+    <style>
+        *, *:before, *:after {
+            box-sizing: border-box;
+            outline: none;
+        }
+        a[title="统计"] {
+            display: none;
+        }
+        html, body {
+            font-family: "SF Pro SC", "SF Pro Text", "SF Pro Icons", "AOS Icons", "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", 微软雅黑, STHeiti, 华文细黑, sans-serif;
+            line-height: 1;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        html {
+            font-size: 16px;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: left;
+            padding: 50px 0;
+            overflow: hidden;
+        }
+        .c1 {
+            background-image: linear-gradient(1deg, #5d5b5b, #2b2a2a 51%, #000000);
+            color: #fff;
+        }
+        .c2 {
+            background-color: white;
+            color: #666;
+            padding-top: 0;
+        }
+        .content {
+            width: 100%;
+            max-width: 1024px;
+            display: flex;
+            justify-content: center;
+            padding: 0 100px;
+            z-index: 1;
+        }
+        .c2 .content {
+            flex-direction: column;
+        }
+        .iphone_img {
+            max-width: 256px;
+            max-height: 512px;
+        }
+        .right {
+            max-width: 518px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo_img {
+            max-width: 350px;
+            width: 80%;
+            margin-top: 35px;
+            margin-bottom: 46px;
+        }
+
+        .download_content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 50px 0 20px;
+        }
+        .download_content .btn {
+            width: 100%;
+            max-width: 280px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            vertical-align: center;
+            margin: 7.5px 9px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-radius: 35px;
+            background: rgba(255,255,255,.3);
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+            background-size: cover;
+        }
+
+        .android {
+            background-image: url(static/img/lu_pc_android.png);
+        }
+
+        .ios {
+            background-image: url(static/img/lu_pc_ios.png);
+        }
+
+        .QandA {
+            position: relative;
+            display: flex;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .QandA > div{
+            width: 100%;
+            display: flex;
+        }
+        .QandA span {
+            margin-right: 32px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .QandA span:first-of-type {
+            width: 30px;
+            color: #5d5b5b;
+            font-size: 2.25rem;
+        }
+
+        .QandA .btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100px;
+            height: 32px;
+            line-height: 32px;
+            color: #5d5b5b;
+            border: 1px solid #F7CDCD;
+            font-size: 0.9375rem;
+            text-align: center;
+            border-radius: 50px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: 2.8px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            letter-spacing: 1.2px;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: .8rem;
+            letter-spacing: 1.2px;
+            line-height: 1.6;
+        }
+
+        .c2 .main_title {
+            display: inline-block;
+            position: relative;
+            color: #5d5b5b;
+            border-bottom: 3px solid #D9D9D9;
+            padding-bottom: 15px;
+            z-index: 1;
+        }
+
+        .c2 .main_title:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            display: block;
+            bottom: -3px;
+            left: 0;
+            border-bottom: 3px solid #5d5b5b;
+        }
+
+        .c2 h2 {
+            font-size: 2.25rem;
+        }
+
+        .c2 h3 {
+            font-size: 1.5rem;
+        }
+
+        .c2 h2 span {
+            color: #666;
+            font-size: 13px;
+            position: absolute;
+            top: 0;
+            left: 160px;
+            line-height: 1.4;
+        }
+
+        .qu {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 7px;
+        }
+
+        .ans {
+            line-height: 2.13;
+        }
+
+        .line {
+            background-color: #eee;
+            height: 1px;
+        }
+
+        .ground_img {
+            width: 100%;
+            background-color: #5d5b5b;
+        }
+
+        .step {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .step_tit {
+            font-size: 1rem;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        .step_img {
+            width: 80%;
+            max-width: 250px;
+            margin: 10px;
+        }
+
+        .wxtip {
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,.85);
+            z-index: 100;
+        }
+        .wxtip.show {
+            display: flex;
+        }
+        .wxtip-title {
+            margin-top: 50px;
+            color: #ffffff;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+        .wxtip-icon {
+            max-width: 350px;
+            align-items: center;
+        }
+
+        .eqtip {
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,.85);
+            z-index: 100;
+        }
+        .eqtip.show {
+            display: flex;
+        }
+        .eqtip-title {
+            margin-top: 80px;
+            color: #ffffff;
+            font-size: 20px;
+            line-height: 1.5;
+        }
+        .eqtip-content {
+            margin-top: 20px;
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        footer {
+            width: 100%;
+            height: 200px;
+            background-image: url(static/img/lu_footer_pc.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        footer img {
+            width: 168px;
+        }
+        footer .footer {
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 40px;
+            color: #fff;
+            font-weight: 300;
+        }
+        footer p {
+            font-size: 1rem;
+            text-align: left;
+            line-height: 1.5;
+        }
+        .fixed {
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,.9);
+            z-index: 100;
+        }
+        .fixed.show {
+            display: flex;
+        }
+        .fixed p {
+            width: 100%;
+            color: #e85151;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .fixed p {
+            width: 100%;
+            color: #e85151;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .fixed div {
+            color: #fff;
+            margin-top: 30px;
+            max-width: 350px;
+            line-height: 1.333;
+        }
+        .incap_page-tooltip{ display:none; }
+        @media (max-width: 992px) {
+            .content {
+                padding: 0 50px;
+            }
+        }
+        @media (max-width: 767px) {
+            html {
+                font-size: 14px;
+            }
+            .iphone_img {
+                display: none;
+            }
+            .right {
+                width: 100%;
+                margin-left: 0;
+            }
+            .img_content > div {
+                margin: 0 10px;
+            }
+            .c2 h2 span {
+                position: initial;
+                display: block;
+                margin-top: 10px;
+            }
+        }
+        @media (max-width: 640px) {
+            .container {
+                padding: 30px 0;
+            }
+            .c2 {
+                padding-bottom: 0;
+            }
+            .content {
+                padding: 0 25px;
+            }
+            .img_content {
+                flex-direction: column;
+                margin-top: 25px;
+            }
+            .img_content > div {
+                margin: 10px 0;
+            }
+            .bank_content img {
+                width: 100%;
+            }
+
+            .bank_content img:first-of-type {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            footer {
+                background-image: url('static/img/lu_footer_m.png');
+                background-position: bottom;
+                height: 150px;
+                background-size: contain;
+            }
+            footer .footer {
+                padding-bottom: 10px;
+            }
+            .android {
+                background-image: url(static/img/lu_pc_android.png);
+            }
+            .ios {
+                position: relative;
+                background-image: url(static/img/lu_pc_ios.png);
+            }
+            .QandA {
+                flex-wrap: wrap;
+            }
+            .QandA span {
+                margin-right: 20px;
+            }
+            .QandA .btn {
+                position: initial;
+                margin-top: 10px;
+                margin-left: 45px;
+            }
+        }
+        @media (max-width: 320px) {
+            html {
+                font-size: 12px;
+            }
+            .content {
+                padding: 0 10px;
+            }
+            .img_content {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 头部区域 -->
+<div class="container c1">
+    <div class="content">
+        <div class="right">
+            <img class="logo_img" src="static/img/vns777_logo.png" alt="logo">
+            <h2> 下载简易版APP，最佳路线畅玩全网 </h2>
+            <div class="download_content">
+                <a class="btn pop" href="javascript:void(0)" onclick="clickDownloadIPhoneApp()"><i class="icon ios"></i>点击下载</a>
+            </div>
+        </div>
+    </div>
+    <div class="sky"></div>
+</div>
+
+<!-- 分割背景 -->
+<img class="ground_img" src="static/img/lu_middle_bg.png" alt="ground">
+
+<!-- 安装教程 -->
+<div class="container c2">
+    <div class="content">
+        <h2 class="main_title">安装教程<span></span></h2>
+        <div class="QandA">
+            <div>
+                <span>Q</span>
+                <span>
+                        <p class="qu">iOS如何安装？</p>
+                        <div class="step">
+						    <p class="step_tit">第一步：根据弹框提示，选择「允许」下载描述文件。</p>
+                            <img class="step_img" src="static/img/step1.png" />
+					    </div>
+                        <div class="line"></div>
+                        <div class="step">
+						    <p class="step_tit">第二步：下载完成后关闭弹框，在「设置」>「通用」>「描述文件与设备管理」或「设备管理」中找到已下载的描述文件。</p>
+                            <img class="step_img" src="static/img/step2.png" />
+					    </div>
+                        <div class="line"></div>
+                        <div class="step">
+						    <p class="step_tit">第三步：点选已下载的描述文件，根据系统提示，进行下一步操作。</p>
+                            <img class="step_img" src="static/img/step3.png" />
+					    </div>
+                        <div class="line"></div>
+                        <div class="step">
+						    <p class="step_tit">第四步：点击「安装」授权，进行下一步下。</p>
+                            <img class="step_img" src="static/img/step4.png" />
+					    </div>
+                        <div class="line"></div>
+                        <div class="step">
+						    <p class="step_tit">第五步：输入手机锁屏密码，进行下一步。</p>
+                            <img class="step_img" src="static/img/step5.png" />
+					    </div>
+                        <div class="line"></div>
+                        <div class="step">
+						    <p class="step_tit">第六步：根据弹出的提示，点击「安装」操作。</p>
+                            <img class="step_img" src="static/img/step6.png" />
+					    </div>
+                        <div class="line"></div>
+                        <div class="step">
+						    <p class="step_tit">第七步：安装完成，点击「完成」按钮，退出并在桌面找到已安装的应用。</p>
+                            <img class="step_img" src="static/img/step7.png" />
+					    </div>
+                        <div class="line"></div>
+                        <div class="step">
+						    <p class="step_tit">第八步：点击桌面图标，进入应用。</p>
+                            <img class="step_img" src="static/img/step8.png" />
+					    </div>
+                    </span>
+            </div>
+            <a href="https://www.wufuba.com" class="btn iosQ" style="display:none;">iOS問題集</a>
+        </div>
+        <!--
+        <div class="line"></div>
+        <div class="QandA">
+            <div>
+                <span>Q</span>
+                <span>
+                    <p class="qu">Android如何安装？</p>
+                    <p class="ans">1.下载前请先至「设定」→「安全性」→ 将「未知的来源」打勾(务必请打勾)</p>
+                    <p class="ans">2.点击本頁的「下载按钮」或扫描QR Code下载apk 并同意安装即可</p>
+                </span>
+            </div>
+            <a href="https://www.wufuba.com" class="btn androidQ" style="display:none;">安卓問題集</a>
+        </div>
+        -->
+    </div>
+</div>
+
+<!-- 底部区域 -->
+<footer>
+    <div class="footer">
+        <p>Copyright © 2006-2020 澳门威尼斯人 Reserved</p>
+    </div>
+</footer>
+
+<!-- 提示信息 - 电脑扫码提示 -->
+<div class="fixed">
+    <p>请使用手机安装应用</p>
+    <img src="static/img/vns777_qrcode_dl.png" alt="qrcode">
+    <div>手机扫描二维码进入下载页面</div>
+</div>
+
+<!-- 提示信息 - 非苹果浏览器 -->
+<div class="wxtip" id="JWeiXinTip" style="display: none">
+    <p class="wxtip-title">系统提示</p>
+    <img class="wxtip-icon" src="static/img/lu_iphone_tip.png" alt="qrcode">
+</div>
+
+<!-- 提示信息 - 非苹果的设备 -->
+<div class="eqtip" id="JNoIPhoneTip" style="display: none">
+    <p class="eqtip-title">系统提示</p>
+    <p class="eqtip-content">仅支持苹果设备<br/>请使用苹果移动设备下载</p>
+</div>
+
+<!-- JavaScript -->
+<script src="static/js/clipboard/clipboard.min.js"></script>
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/star.js"></script>
+<script>
+
+  // 判断浏览类型
+  var browser = {
+    versions: function() {
+      var u = navigator.userAgent;
+      var ua = navigator.userAgent.toLowerCase();
+      app = navigator.appVersion;
+      return { // 移动终端浏览器版本信息
+        trident: u.indexOf('Trident') > -1, /*IE内核*/
+        presto: u.indexOf('Presto') > -1, /*opera内核*/
+        webKit: u.indexOf('AppleWebKit') > -1, /*苹果、谷歌内核*/
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, /*火狐内核*/
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), /*是否为移动终端*/
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), /*iOS终端*/
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, /*android终端或者uc浏览器*/
+        iPhone: u.indexOf('iPhone') > -1, /*是否为iPhone或者QQHD浏览器*/
+        iPad: u.indexOf('iPad') > -1, /*是否iPad*/
+        webApp: u.indexOf('Safari') == -1, /*是否web应该程序，没有头部与底部*/
+        souyue: u.indexOf('souyue') > -1,
+        superapp: u.indexOf('superapp') > -1,
+        weixin: u.indexOf('MicroMessenger') > -1, /*微信*/
+        qq: !!ua.match(/QQ\/[0-9]/i), /*QQ*/
+        Safari: u.indexOf('Safari') > -1 && u.indexOf('Chrome') < 0, /*Safari浏览器*/
+        QQBrowser: ua.indexOf('mqqbrowser') > -1 && ua.indexOf(" qq") < 0, /*QQ浏览器*/
+        webview: !(u.match(/Chrome\/([\d.]+)/) || u.match(/CriOS\/([\d.]+)/)) && u.match(/(iPhone|iPod|iPad).*AppleWebKit(?!.*Safari)/),
+        ucweb: function () {
+          try {
+            return parseFloat(u.match(/ucweb\d+\.\d+/gi).toString().match(/\d+\.\d+/).toString()) >= 8.2
+          } catch (e) {
+            if (u.indexOf('UC') > -1) {
+              return true;
+            }
+            return false;
+          }
+        }(),
+        Symbian: u.indexOf('Symbian') > -1,
+        ucSB: u.indexOf('Firofox/1.') > -1
+      };
+    }(),
+    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+  };
+
+  // 判断是否为苹果设备
+  function isAppleDevice() {
+    if (browser.versions.ios) {
+      // 是苹果设备
+      return true;
+    } else {
+      // 非苹果设备
+      return false;
+    }
+  }
+
+  // 判断是否为移动设备
+  function isMobile() {
+    let webMode = '';
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // 判断是否苹果浏览器
+  function isMobileSafari() {
+    if (isAppleDevice()) {
+      // 是苹果设备
+      if (browser.versions.mobile) { // 判断是否是移动设备打开
+        var ua = navigator.userAgent;
+        var isQQBrowser = /(?:MQQBrowser|QQ)/.test(ua);
+        var isFireFox = /(?:FxiOS)/.test(ua);
+        var isChrome = /(?:Chrome|CriOS)/.test(ua);
+        var isOpen= /(?:Opera Mini)/.test(ua);
+        var isUC = /(?:UCWEB|UCBrowser)/.test(ua);
+        if (browser.versions.ios
+          && browser.versions.webKit
+          && browser.versions.Safari
+          && !browser.versions.QQBrowser
+          && !isQQBrowser
+          && !isFireFox
+          && !isChrome
+          && !isOpen
+          && !isUC) {
+          // 在IOS浏览器打开
+          return true;
+        } else {
+          // 在安卓浏览器打开
+          return false;
+        }
+      } else { // 否则就是PC浏览器打开
+        return false;
+      }
+    } else {
+      // 非苹果设备
+      return false;
+    }
+  }
+
+  // 判断是否微信扣扣微博
+  function isMobileWeiXinQQSinaAlipay() {
+    if (browser.versions.mobile) { // 判断是否是移动设备打开
+      var ua = navigator.userAgent.toLowerCase();
+      if(browser.versions.weixin){
+        // 在微信中打开
+        return true;
+      } else if(browser.versions.qq
+        && !browser.versions.QQBrowser){
+        // 在QQ中打开
+        return true;
+      } else if (ua.indexOf('alipayclient') > -1) {
+        // 在支付宝打开
+        return true;
+      } else if (ua.indexOf('weibo') > -1) {
+        // 在新浪微博打开
+        return true;
+      } else {
+        return false;
+      }
+    } else { // 否则就是PC浏览器打开
+      return false;
+    }
+  }
+
+  // 复制地址到剪切板
+  function initCopyUrlToClipboard(){
+    var urlstring = this.location.href.toString();
+    var clipboard = new ClipboardJS('.download_content', {
+      text: function() {
+        return urlstring;
+      }
+    });
+    clipboard.on('success', function() {
+      alert('仅支持Safari浏览器下载，已成功复制地址，请打开Safari浏览器，在地址栏中粘贴地址进行访问！');
+    });
+    clipboard.on('error', function() {
+      alert('仅支持Safari浏览器，请用Safari浏览器下载！');
+    });
+  }
+
+  // 点击下载按钮操作
+  function clickDownloadIPhoneApp() {
+    if (isAppleDevice()) {
+      // 是苹果设备
+      if (isMobile()) { // 是否移动设备
+        if (isMobileSafari()) {
+          document.getElementById('JWeiXinTip').style.display='none';
+          window.location.href = window.location.protocol + "//" + window.location.host + "/resource/webclipvns777dl.mobileconfig";
+        } else {
+          if (isMobileWeiXinQQSinaAlipay()) {
+            // 提示：右上角...打开Safari
+            document.getElementById('JWeiXinTip').style.display='block';
+            document.getElementById('JWeiXinTip').onclick=function(){
+              document.getElementById('JWeiXinTip').style.display='none';
+            };
+          } else {
+            // 提示：复制地址到剪切板
+
+          }
+        }
+      }
+    } else {
+      // 非苹果设备
+      if (isMobile()) {  // 是否移动设备
+        document.getElementById('JNoIPhoneTip').style.display='block';
+        document.getElementById('JNoIPhoneTip').onclick=function(){
+          document.getElementById('JNoIPhoneTip').style.display='none';
+        };
+      }
+    }
+  }
+
+  // 页面初始化配置
+  function firstInit() {
+    if (isMobile()) { // 是否移动设备
+      if (isAppleDevice()) { // 是否苹果设备
+        if (isMobileSafari()) { // 是否苹果浏览器
+
+        } else {
+          if (isMobileWeiXinQQSinaAlipay()) {
+            // 提示：右上角...打开Safari
+            document.getElementById('JWeiXinTip').style.display='block';
+            document.getElementById('JWeiXinTip').onclick=function(){
+              document.getElementById('JWeiXinTip').style.display='none';
+            };
+          } else {
+            // 配置：复制地址到剪切板
+            initCopyUrlToClipboard();
+            // 配置：直接跳转问题页面
+            window.location.href = window.location.protocol + "//" + window.location.host + "/vnstrans402.html?page=vns777dl";
+          }
+        }
+      } else {
+        // 非苹果设备
+        document.getElementById('JNoIPhoneTip').style.display='block';
+        document.getElementById('JNoIPhoneTip').onclick=function(){
+          document.getElementById('JNoIPhoneTip').style.display='none';
+        };
+      }
+    }  else {
+      // 电脑设备
+      $('.fixed').addClass('show');
+    }
+  }
+
+  if(!isMobile()) {
+    $('.pop').on('click', function(e) {
+      e.preventDefault();
+      $('.fixed').addClass('show');
+    })
+    $('.fixed').on('click', function(e) {
+      $('.fixed').removeClass('show');
+    })
+  } else {
+    $('.btn').removeClass('pop');
+  }
+
+  $('.btn').on('click', function(e) {
+    if (isMobileSafari()) {
+      $('html, body').animate({
+        scrollTop: $('.c2').offset().top
+      }, 300, function() {
+      });
+    }
+  });
+
+  // 页面初始化配置
+  firstInit();
+
+</script>
+</body>
+</html>

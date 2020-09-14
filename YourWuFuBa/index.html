@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>APP下载页面</title>
+    <link rel="shortcut icon" href="img/lutube.ico">
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/star.css">
+    <style>
+        *, *:before, *:after {
+            box-sizing: border-box;
+            outline: none;
+        }
+        a[title="站长统计"] {
+            display: none;
+        }
+        html, body {
+            font-family: "SF Pro SC", "SF Pro Text", "SF Pro Icons", "AOS Icons", "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Microsoft Yahei", 微软雅黑, STHeiti, 华文细黑, sans-serif;
+            line-height: 1;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+        html {
+            font-size: 16px;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: left;
+            padding: 50px 0;
+            overflow: hidden;
+        }
+        .c1 {
+            background-image: linear-gradient(1deg, #f35d44, #f35c44 51%, #dd0f3a);
+            color: #fff;
+        }
+        .c2 {
+            background-color: white;
+            color: #666;
+            padding-top: 0;
+        }
+        .content {
+            width: 100%;
+            max-width: 1024px;
+            display: flex;
+            justify-content: center;
+            padding: 0 100px;
+            z-index: 1;
+        }
+        .c2 .content {
+            flex-direction: column;
+        }
+        .iphone_img {
+            max-width: 256px;
+            max-height: 512px;
+        }
+        .right {
+            max-width: 518px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo_img {
+            max-width: 350px;
+            width: 80%;
+            margin-bottom: 46px;
+        }
+
+        .download_content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0 20px;
+        }
+        .download_content .btn {
+            width: 40%;
+            max-width: 170px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            margin: 7.5px 9px;
+            border-radius: 35px;
+            background: rgba(255,255,255,.3);
+            color: #fff;
+            font-size: 0.9375em;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 2px;
+            background-size: cover;
+        }
+
+        .android {
+            background-image: url(img/pc_ad.png);
+        }
+
+        .ios {
+            background-image: url(img/pc_ios.png);
+        }
+
+        .QandA {
+            position: relative;
+            display: flex;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .QandA > div{
+            width: 100%;
+            display: flex;
+        }
+        .QandA span {
+            margin-right: 32px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .QandA span:first-of-type {
+            width: 30px;
+            color: #e85151;
+            font-size: 2.25rem;
+        }
+
+        .QandA .btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100px;
+            height: 32px;
+            line-height: 32px;
+            color: #E85151;
+            border: 1px solid #F7CDCD;
+            font-size: 0.9375rem;
+            text-align: center;
+            border-radius: 50px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: 2.8px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            letter-spacing: 1.2px;
+            font-weight: 500;
+        }
+
+        p {
+            font-size: .8rem;
+            letter-spacing: 1.2px;
+            line-height: 1.6;
+        }
+
+        .c2 .main_title {
+            display: inline-block;
+            position: relative;
+            color: #e85151;
+            border-bottom: 3px solid #D9D9D9;
+            padding-bottom: 15px;
+            z-index: 1;
+        }
+
+        .c2 .main_title:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            display: block;
+            bottom: -3px;
+            left: 0;
+            border-bottom: 3px solid #e85151;
+        }
+
+        .c2 h2 {
+            font-size: 2.25rem;
+        }
+
+        .c2 h3 {
+            font-size: 1.5rem;
+        }
+
+        .c2 h2 span {
+            color: #666;
+            font-size: 13px;
+            position: absolute;
+            top: 0;
+            left: 160px;
+            line-height: 1.4;
+        }
+
+        .qu {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 7px;
+        }
+
+        .ans {
+            line-height: 2.13;
+        }
+
+        .line {
+            background-color: #eee;
+            height: 1px;
+        }
+
+        .ground_img {
+            width: 100%;
+            background-color: #f35d44;
+        }
+        footer {
+            width: 100%;
+            height: 200px;
+            background-image: url(img/lulu_footer.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        footer img {
+            width: 168px;
+        }
+        footer .footer {
+            display: flex;
+            justify-content: flex-end;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 40px;
+            color: #fff;
+            font-weight: 300;
+        }
+        footer p {
+            font-size: 1rem;
+            text-align: left;
+            line-height: 1.5;
+        }
+        .fixed {
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,.9);
+            z-index: 100;
+        }
+        .fixed.show {
+            display: flex;
+        }
+        .fixed p {
+            width: 100%;
+            color: #e85151;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .fixed p {
+            width: 100%;
+            color: #e85151;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .fixed div {
+            color: #fff;
+            margin-top: 30px;
+            max-width: 350px;
+            line-height: 1.333;
+        }
+        .incap_page-tooltip{ display:none; }
+        @media (max-width: 992px) {
+            .content {
+                padding: 0 50px;
+            }
+        }
+        @media (max-width: 767px) {
+            html {
+                font-size: 14px;
+            }
+            .iphone_img {
+                display: none;
+            }
+            .right {
+                width: 100%;
+                margin-left: 0;
+            }
+            .img_content > div {
+                margin: 0 10px;
+            }
+            .c2 h2 span {
+                position: initial;
+                display: block;
+                margin-top: 10px;
+            }
+        }
+        @media (max-width: 640px) {
+            .container {
+                padding: 30px 0;
+            }
+            .c2 {
+                padding-bottom: 0;
+            }
+            .content {
+                padding: 0 25px;
+            }
+            .img_content {
+                flex-direction: column;
+                margin-top: 25px;
+            }
+            .img_content > div {
+                margin: 10px 0;
+            }
+            .bank_content img {
+                width: 100%;
+            }
+
+            .bank_content img:first-of-type {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            footer {
+                background-image: url('img/lulu_footer.png');
+                background-position: bottom;
+                height: 150px;
+                background-size: contain;
+            }
+            footer .footer {
+                padding-bottom: 10px;
+            }
+            .android {
+                background-image: url(img/pc_ad.png);
+            }
+            .ios {
+                position: relative;
+                background-image: url(img/pc_ios.png);
+            }
+            .QandA {
+                flex-wrap: wrap;
+            }
+            .QandA span {
+                margin-right: 20px;
+            }
+            .QandA .btn {
+                position: initial;
+                margin-top: 10px;
+                margin-left: 45px;
+            }
+        }
+        @media (max-width: 320px) {
+            html {
+                font-size: 12px;
+            }
+            .content {
+                padding: 0 10px;
+            }
+            .img_content {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container c1">
+        <div class="content">
+            <div class="right">
+                <img class="logo_img" src="img/lutube_logo.png" alt="logo">
+                <h2>亚洲最强影视播放软件天天更新看到爽!</h2>
+                <div class="download_content">
+                <a class="btn pop android3" href="https://www.wufuba.com/ruanjian/app"><i class="icon android"></i>安卓国内载点1</a>
+                    <a class="btn pop ios3" href="https://www.wufuba.com/ruanjian/app"><i class="icon ios"></i>ios国内载点1</a>
+                    <a class="btn pop android2" href="https://www.wufuba.com/ruanjian/app"><i class="icon android"></i>安卓国内载点2</a>
+                    <a class="btn pop ios2" href="https://www.wufuba.com/ruanjian/app"><i class="icon ios"></i>ios国内载点2</a>
+                    <a class="btn pop android1" href="https://www.wufuba.com/ruanjian/app"><i class="icon android"></i>安卓海外载点</a>
+                    <a class="btn pop ios1" href="https://www.wufuba.com/ruanjian/app"><i class="icon ios"></i>ios海外载点</a>
+                </div>
+                <p>※免费安装APP若无法更新版本，请先卸载再重新安装</p>
+                <p>※看片前请先收藏最新发布地址：<a href="#" style="color:#fff;text-decoration: underline;">http://www.wufuba.com</a></p>
+            </div>
+        </div>
+        <div class="sky"></div>
+    </div>
+    <img class="ground_img" src="img/lulu_bg.png" alt="ground">
+    <div class="container c2">
+        <div class="content">
+            <h2 class="main_title">安装教学<span>近日各大杀毒软件提示本APP是恶意软件，因为APP包含破解内容，请大家相信我们，不会放恶意程序，本站有广告和收费VIP盈利，不会去破环用户手机，请大家安心使用</span></h2>
+            <div class="QandA">
+                <div>
+                    <span>Q</span>
+                    <span>
+                        <p class="qu">iOS如何安装？</p>
+                        <p class="ans">1.APP下载完成後，请开启「设定」>点选「通用」或「一般」</p>
+                        <p class="ans">2.点选「描述档」或「描述档与装置管理」或「设备管理」</p>
+                        <p class="ans">3.点入「企业级应用」的选项</p>
+                        <p class="ans">4.按下『信任「Fresh Florist/Gyyan/Inte/3d」』</p>
+                        <p class="ans">5.按下「信任」App即完成设定</p>
+                        <p class="ans">6.点击开启「App」，开始享用 !</p>
+                    </span>
+                </div>
+                <a href="https://www.wufuba.com" class="btn iosQ" style="display:none;">iOS問題集</a>
+            </div>
+            <div class="line"></div>
+            <div class="QandA">
+                <div>
+                    <span>Q</span>
+                    <span>
+                        <p class="qu">Android如何安装？</p>
+                        <p class="ans">1.下载前请先至「设定」→「安全性」→ 将「未知的来源」打勾(务必请打勾)</p>
+                        <p class="ans">2.点击本頁的「下载按钮」或扫描QR Code下载apk 并同意安装即可</p>
+                    </span>
+                </div>
+                <a href="https://www.wufuba.com" class="btn androidQ" style="display:none;">安卓問題集</a>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer">
+            <p>客服信箱：<a href="#" style="text-decoration: underline;">z@wufuba.com</a></p>
+            <p>© Wufuba. All rights reserved.</p>
+        </div>
+    </footer>
+    <div class="fixed">
+        <p>请使用手机安装程式</p>
+        <img src="img/lu_qrcode.png" alt="qrcode">
+        <div>安装提醒：</div>
+        <div>1.Android手机下载前请先至「设定 > 安全性」中将「未知的来源」打勾</div>
+        <div>2.IOS手机下载后请至「设定 > 一般 > 描述档或装置管理」中, 点击信任「企业级APP」</div>
+        <div>3.请勿使用微信的QRcode扫码器</div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/star.js"></script>
+    <script>
+        function mobile() {
+            let webMode = '';
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+                return true;
+            }else {
+                return false;
+            }
+        }
+        if(!mobile()) {
+            $('.pop').on('click', function(e) {
+                e.preventDefault();
+                $('.fixed').addClass('show');
+            })
+            $('.fixed').on('click', function(e) {
+                $('.fixed').removeClass('show');
+            })
+        } else {
+            $('.btn').removeClass('pop');
+        }
+
+        $('.btn').on('click', function(e) {
+            $('html, body').animate({
+                scrollTop: $('.c2').offset().top
+            }, 300, function() {
+            });
+        })
+
+    </script>
+</body>
+</html>
